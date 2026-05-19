@@ -3,28 +3,14 @@
 #include <vector>
 #include <array>
 
-// Physics and Speed Constants
-constexpr float BRICK_PARTICLE_SPEED = 4;
-constexpr float ECTS_JUMP_SPEED = -6;
-constexpr float GRADESHEET_SPEED = 1;
-constexpr float GRAVITY = 0.25f;
-constexpr float DEAN_LUGGAGE_SPEED = 4;
-constexpr float DEAN_SPEED = 1;
-constexpr float STUDENT_ACCELERATION = 0.25f;
-constexpr float STUDENT_JUMP_SPEED = -4;
-constexpr float STUDENT_WALK_SPEED = 2;
-constexpr float MAX_VERTICAL_SPEED = 8;
-constexpr float ENERGYDRINK_SPEED = 1;
-
-// Rozmiary i Skalowanie
-constexpr unsigned char CELL_SIZE = 16;
-constexpr unsigned char SCREEN_RESIZE = 2;
+constexpr unsigned char  CELL_SIZE     = 16;
+constexpr unsigned char  SCREEN_RESIZE = 2;
 constexpr unsigned short SCREEN_HEIGHT = 240;
-constexpr unsigned short SCREEN_WIDTH = 256;
+constexpr unsigned short SCREEN_WIDTH  = 256;
 
 // Timery i Mechaniki Studenta
 constexpr unsigned char STUDENT_BLINKING = 4;
-constexpr float _STUDENT_DEATH_DURATION_ = 32; 
+constexpr float STUDENT_DEATH_DURATION_ = 32; 
 constexpr unsigned char STUDENT_GROWTH_DURATION = 64; 
 constexpr unsigned char STUDENT_INVINCIBILITY_DURATION = 128; 
 constexpr unsigned char STUDENT_JUMP_TIMER = 8;
@@ -43,35 +29,44 @@ constexpr unsigned short MAIL_BLOCK_ANIMATION_SPEED = 8;
 // Czas trwania klatki (60 FPS)
 constexpr std::chrono::microseconds FRAME_DURATION(16667);
 
-// Typy kafelków na mapie (Zostawiamy techniczne nazwy, łatwiej pisać kod)
-enum Cell
+constexpr float GRAVITY               = 0.25f;
+constexpr float MAX_VERTICAL_SPEED    = 8.0f;
+
+constexpr float STUDENT_WALK_SPEED    = 2.0f;
+constexpr float STUDENT_ACCELERATION  = 0.25f;
+constexpr float STUDENT_JUMP_SPEED    = -4.0f;
+
+constexpr float GRADESHEET_SPEED      = 1.0f;
+constexpr float DEAN_SPEED            = 1.0f;
+constexpr float DEAN_LUGGAGE_SPEED    = 4.0f;
+constexpr float ENERGYDRINK_SPEED     = 1.0f;
+constexpr float BRICK_PARTICLE_SPEED  = 4.0f;
+constexpr float ECTS_JUMP_SPEED       = -6.0f;
+
+enum class Cell : unsigned char
 {
-	ActivatedQuestionBlock,
-	Brick,
-	Ects,
-	Empty,
-	Pipe,
-	MailBlock,
-	Wall
+    ActivatedMailBlock = 0,
+    Brick,
+    Ects,
+    Empty,
+    Pipe,
+    MailBlock,
+    Wall
 };
 
-// Struktura dla prostych obiektów fizycznych (np. odłamki zniszczonych klocków/książek)
 struct Object
 {
-	float horizontal_speed;
-	float vertical_speed;
-	float x;
-	float y;
+    float x;
+    float y;
+    float horizontal_speed;
+    float vertical_speed;
 
-	Object(const float i_x, const float i_y, const float i_horizontal_speed = 0, const float i_vertical_speed = 0) :
-		horizontal_speed(i_horizontal_speed),
-		vertical_speed(i_vertical_speed),
-		x(i_x),
-		y(i_y)
-	{
-
-	}
+    explicit Object(float i_x, float i_y, float i_horizontal_speed = 0.0f, float i_vertical_speed = 0.0f)
+        : x(i_x)
+        , y(i_y)
+        , horizontal_speed(i_horizontal_speed)
+        , vertical_speed(i_vertical_speed)
+    {}
 };
 
-// Definicja typu mapy
-typedef std::vector<std::array<Cell, SCREEN_HEIGHT / CELL_SIZE>> Map;
+using Map = std::vector<std::array<Cell, SCREEN_HEIGHT / CELL_SIZE>>;

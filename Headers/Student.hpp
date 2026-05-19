@@ -26,15 +26,15 @@ class Student{
 
 	// Im dłużej trzymamy spację/strzałkę, tym wyżej skacze Student
 	unsigned char jump_timer;
-	// Stan studenta: 0 = zmęczony (mały), 1 = naładowany energetykiem (duży)
+	// Stan studenta: 0 = zmęczony (mały), 1 = naładowany energetykiem
 	unsigned char powerup_state;
 
 	// Timery oparte na stałych z Global.hpp
 	unsigned short death_timer;
-	unsigned short growth_timer;
-	unsigned short invincible_timer;
+	unsigned short turbo_student_timer;
+	unsigned short immunity_timer; 
    
-	// Lista energetyków aktywnych na mapie (odpowiednik grzybków)
+	// Lista energetyków aktywnych na mapie 
 	std::vector<EnergyDrink> energy_drinks;
 	std::array<Animation, 2> walk_animations;
 

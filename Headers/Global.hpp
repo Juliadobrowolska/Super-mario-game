@@ -11,8 +11,8 @@ constexpr unsigned short SCREEN_WIDTH  = 256;
 // Timery i Mechaniki Studenta
 constexpr unsigned char STUDENT_BLINKING = 4;
 constexpr unsigned short STUDENT_DEATH_DURATION = 32;
-constexpr unsigned char STUDENT_GROWTH_DURATION = 64; 
-constexpr unsigned char STUDENT_INVINCIBILITY_DURATION = 128; 
+constexpr unsigned char STUDENT_TURBO_DURATION = 64; 
+constexpr unsigned char STUDENT_IMMUNITY_DURATION = 128; 
 constexpr unsigned char STUDENT_JUMP_TIMER = 8;
 
 // Animacje i Przeciwnicy

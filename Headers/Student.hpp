@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <array>
 #include <SFML/Graphics.hpp>
 #include "Animation.hpp"
 #include "Global.hpp"
@@ -8,10 +9,13 @@
 #include "MapManager.hpp"
 
 class Student{
-    bool croiching;
-    bool dead;
-    bool flipped;
-    bool on_ground;
+	private:
+    bool crouching = false;
+    bool dead=false;
+    bool flipped = false;
+    bool on_ground = false;
+	
+	bool can_jump = true;
 
     // Zmienna zapobiegająca bugowi z podwójnym zaliczeniem wrogów na raz
 	float enemy_bounce_speed;
@@ -22,7 +26,6 @@ class Student{
 
 	// Im dłużej trzymamy spację/strzałkę, tym wyżej skacze Student
 	unsigned char jump_timer;
-	
 	// Stan studenta: 0 = zmęczony (mały), 1 = naładowany energetykiem (duży)
 	unsigned char powerup_state;
 
@@ -30,8 +33,10 @@ class Student{
 	unsigned short death_timer;
 	unsigned short growth_timer;
 	unsigned short invincible_timer;
-    // Lista energetyków aktywnych na mapie (odpowiednik grzybków)
+   
+	// Lista energetyków aktywnych na mapie (odpowiednik grzybków)
 	std::vector<EnergyDrink> energy_drinks;
+	std::array<Animation, 2> walk_animations;
 
 	sf::Sprite sprite;
 	sf::Texture texture;
@@ -45,19 +50,17 @@ public:
 
 	float get_vertical_speed() const;
 	float get_x() const;
+	sf::FloatRect get_hit_box() const;
 
 	// Funkcje wywoływane przy "skreśleniu z listy studentów" (śmierci w grze)
 	void die(const bool i_instant_death);
 	
 	void draw(sf::RenderWindow& i_window);
-	void draw_mushrooms(const unsigned i_view_x, sf::RenderWindow& i_window); // Rysowanie energetyków
+	void draw_energy_drinks(const unsigned i_view_x, sf::RenderWindow& i_window); // Rysowanie energetyków
 	void reset();
 	void set_position(const float i_x, const float i_y);
 	void set_vertical_speed(const float i_value);
 	
 	// Główna funkcja aktualizująca fizykę i pozycję Studenta
 	void update(const unsigned i_view_x, MapManager& i_map_manager);
-
-	// Pobieranie obszaru kolizji (Hitbox) Studenta
-	sf::FloatRect get_hit_box() const;
 };

@@ -45,13 +45,13 @@ constexpr float ECTS_JUMP_SPEED       = -6.0f;
 
 enum class Cell : unsigned char
 {
-    ActivatedMailBlock = 0,
-    Brick,
-    Ects,
-    Empty,
-    Pipe,
-    MailBlock,
-    Wall
+    Empty = 0,
+    Floor1, 
+    Floor2,
+    Floor3, 
+    Platform, 
+    MailBlock, 
+    ActivatedMailBlock 
 };
 
 struct Object

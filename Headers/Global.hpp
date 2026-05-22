@@ -3,10 +3,10 @@
 #include <vector>
 #include <array>
 
-constexpr unsigned char  CELL_SIZE     = 16;
-constexpr unsigned char  SCREEN_RESIZE = 2;
-constexpr unsigned short SCREEN_HEIGHT = 240;
-constexpr unsigned short SCREEN_WIDTH  = 256;
+constexpr unsigned char  CELL_SIZE     = 80;
+constexpr unsigned char  SCREEN_RESIZE = 1;
+constexpr unsigned short SCREEN_HEIGHT = 1280; // 16 komórek * 80 pikseli = 1280 pikseli
+constexpr unsigned short SCREEN_WIDTH  = 1280; // 16 komórek * 80 pikseli = 1280 pikseli
 
 // Timery i Mechaniki Studenta
 constexpr unsigned char STUDENT_BLINKING = 4;

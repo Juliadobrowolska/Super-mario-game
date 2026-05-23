@@ -12,20 +12,20 @@
 
 // Konstruktor klasy Student - ustawia domyślne statystyki i stan postaci na starcie gry
 Student::Student() :
-    can_jump(0),          // Na starcie nie można skoczyć (aż dotkniemy ziemi)
-    dead(0),              // Student zaczyna grę żywy
-    flipped(0),           // Patrzy w prawo (brak odbicia lustrzanego tekstury)
-    on_ground(0),         // Zaczyna w powietrzu, zanim opadnie na platformę
-    crouching(0),         // Nie kuca
-    death_timer(0),       // Reset licznika czasu śmierci
-    *turbo_student_timer(0)*, // *Reset czasu bycia turbo studentem (speed-boosta)*
-    *immunity_timer(0)*,      // *Reset licznika nietykalności po oberwaniu*
-    powerup_state(0),     // Stan początkowy: brak ulepszeń (czysty student)
-    x(100),               // Startujemy kawałek od lewej krawędzi screena
-    y(100),               // Startujemy w powietrzu, żeby sprawdzić spadanie
-    enemy_bounce_speed(0),// Brak siły odbicia od wroga
-    horizontal_speed(0),  // Postać stoi w miejscu (brak ruchu w poziomie)
-    vertical_speed(0),    // Postać nie spada ani nie leci w górę
+    can_jump(0),
+    dead(0),
+    flipped(0),
+    on_ground(0),
+    crouching(0),
+    death_timer(0),
+    turbo_student_timer(0),
+    immunity_timer(0),
+    powerup_state(0),
+    x(100),
+    y(100),
+    enemy_bounce_speed(0),
+    horizontal_speed(0),
+    vertical_speed(0),
     sprite(texture)
 {
 }

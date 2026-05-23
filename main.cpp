@@ -22,7 +22,7 @@ int main()
 				window.close();
 		}
 
-		map_manager.update();
+		map_manager.update(view_x);
 		student.update(view_x, map_manager);
 
 		window.clear(sf::Color::Black);

@@ -9,7 +9,7 @@
 
 // Konstruktor klasy MapManager
 MapManager::MapManager() :
-    _mail_anim_frame(0)_
+    mail_anim_frame(0)
 {
     // Inicjalizacja generatora liczb losowych
     srand(static_cast<unsigned int>(time(nullptr)));
@@ -22,17 +22,17 @@ MapManager::MapManager() :
 bool MapManager::initialize()
 {
     // Ładowanie pojedynczych tekstur kafelków środowiska na podstawie struktury plików zasobów
-    _if (!tex_floor1.loadFromFile("Resources/Images/block1.png")) return false;       // Czarny piksel oraz platformy_
-    _if (!tex_floor2.loadFromFile("Resources/Images/block2.png")) return false;       // Czerwony piksel (głęboka podłoga)_
-    _if (!tex_floor3.loadFromFile("Resources/Images/bookblock.png")) return false;    // Żółty piksel (regał na książki)_
-    _if (!tex_platform.loadFromFile("Resources/Images/block1.png")) return false;     // Platformy powietrzne (współdzielą plik block1)_
-    _if (!tex_activated_mail.loadFromFile("Resources/Images/mailblock4.png")) return false; // Szara koperta po dezaktywacji_
+    if (!tex_floor1.loadFromFile("Resources/Images/block1.png")) return false;
+    if (!tex_floor2.loadFromFile("Resources/Images/block2.png")) return false;
+    if (!tex_floor3.loadFromFile("Resources/Images/bookblock.png")) return false;
+    if (!tex_platform.loadFromFile("Resources/Images/block1.png")) return false;
+    if (!tex_activated_mail.loadFromFile("Resources/Images/mailblock4.png")) return false;
 
     // Ładowanie 4 klatek animacji aktywnego bloku mailowego z uwzględnieniem indeksowania od zera
-    _tex_mail_frames.resize(4);_
+    tex_mail_frames.resize(4);
     for (int i = 0; i < 4; i++)
     {
-        _if (!tex_mail_frames[i].loadFromFile("Resources/Images/mailblock" + std::to_string(i) + ".png"))_
+        if (!tex_mail_frames[i].loadFromFile("Resources/Images/mailblock" + std::to_string(i) + ".png"))
             return false;
     }
 
@@ -87,9 +87,9 @@ std::vector<std::vector<Cell>> MapManager::load_segment_from_image(const std::st
 
             if (pixel == sf::Color::Black)           segment[y][x] = Cell::Floor1;
             else if (pixel == sf::Color::Red)        segment[y][x] = Cell::Floor2;
-            _else if (pixel == sf::Color::Yellow)     segment[y][x] = Cell::Floor3; // Żółty piksel przypisany do regału z książkami_
-            _else if (pixel == sf::Color::Magenta)    segment[y][x] = Cell::MailBlock; // Fioletowy piksel przypisany do bloku maila_
-            else if (pixel == sf::Color::Blue)       segment[y][x] = Cell::Empty; // Rezerwacja pozycji pod generowanie przeciwników
+            else if (pixel == sf::Color::Yellow)     segment[y][x] = Cell::Floor3;
+            else if (pixel == sf::Color::Magenta)    segment[y][x] = Cell::MailBlock;
+            else if (pixel == sf::Color::Blue)       segment[y][x] = Cell::Empty;
             else                                     segment[y][x] = Cell::Empty;
         }
     }
@@ -166,7 +166,7 @@ void MapManager::update(unsigned int view_x)
     // Aktualizacja klatek animacji kafelków mailowych na podstawie upływu czasu (zakres 0 do 3)
     if (mail_anim_clock.getElapsedTime().asSeconds() >= 0.15f)
     {
-        _mail_anim_frame = (mail_anim_frame + 1) % 4;_
+        mail_anim_frame = (mail_anim_frame + 1) % 4;
         mail_anim_clock.restart();
     }
 
